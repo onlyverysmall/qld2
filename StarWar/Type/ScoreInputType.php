@@ -2,21 +2,26 @@
 	namespace StarWar\Type;
 
 	use StarWar\Types;
-	use GraphQL\Type\Definition\ObjectType;
+	use GraphQL\Type\Definition\InputObjectType;
 	use GraphQL\Type\Definition\ResolveInfo;
 
-	class CharacterType extends ObjectType {
+	class ScoreInputType extends InputObjectType {
 		/**
-		 * CharacterType constructor.
+		 * ScoreInputType constructor.
 		 */
 		public function __construct() {
 			$config = [
-				'name' => 'Character',
-				'description' => 'Classic heroes and villains',
+				'name' => 'ScoreInput',
 				'fields' => function () {
 					return [
-						'id' => Types::id(),
-						'name' => Types::string(),
+						'userId' => [
+							'type' => Types::id(),
+							'description' => 'User id for new Score',
+						],
+						'score' => [
+							'type' => Types::int(),
+							'description' => 'Score value for new Score',
+						],
 					];
 				},
 				'resolveField' => function ($value, $args, $context, ResolveInfo $info) {
@@ -26,7 +31,7 @@
 					} else {
 						return $value->{$info->fieldName};
 					}
-				},
+				}
 			];
 			parent::__construct($config);
 		}

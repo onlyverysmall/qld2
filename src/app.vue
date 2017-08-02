@@ -4,12 +4,24 @@ import gql from 'graphql-tag';
 export default {
     data() {
         return {
-            hello: '',
+            quiz: '',
+            score: 0,
+            total: 0,
+            message: {},
+            completed: false,
         };
     },
     apollo: {
-        // Simple query that will update the 'hello' vue property
-        hello: gql`{ hello }`,
+        // GraphQL query
+        quiz: {
+            query: gql`query quiz {
+                quiz {
+					quote {
+						text
+					}
+                }
+            }`,
+        }
     },
 }
 </script>
@@ -17,7 +29,7 @@ export default {
 <template>
     <div class="">
         <h1>Welcome to Star War</h1>
-        <h2>{{ hello }}</h2>
+        <h2>{{ quiz }}</h2>
     </div>
 </template>
 

@@ -1,26 +1,24 @@
 <?php
 	namespace StarWar\Type;
 
-	use StarWar\Data\Quote;
+	use StarWar\Data\Score;
 	use StarWar\Data\DataSource;
 	use StarWar\Types;
 	use GraphQL\Type\Definition\ObjectType;
 	use GraphQL\Type\Definition\ResolveInfo;
 
-	class QuoteType extends ObjectType {
-
+	class ScoreType extends ObjectType {
 		/**
-		 * @return QuoteType
+		 * ScoreType constructor.
 		 */
 		public function __construct() {
 			$config = [
-				'name' => 'Quote',
+				'name' => 'Score',
+				'description' => 'Our players\' efforts',
 				'fields' => function () {
 					return [
-						'id' => Types::id(),
-						'character' => Types::character(),
-						'movie' => Types::movie(),
-						'text' => Types::string(),
+						'user' => Types::user(),
+						'score' => Types::int(),
 					];
 				},
 				'resolveField' => function ($value, $args, $context, ResolveInfo $info) {
@@ -36,22 +34,11 @@
 		}
 
 		/**
-		 * @param Quote $quote
+		 * @param Score $score
 		 * @return object
 		 */
-		public function resolveCharacter(Quote $quote) {
-			return $this->db()->findCharacter($quote->characterId);
-		}
-
-		/**
-		 * @param Quote $quote
-		 * @return object
-		 */
-		public function resolveMovie(Quote $quote) {
-			if ($quote->movieId) {
-				return $this->db()->findMovie($quote->movieId);
-			}
-			return null;
+		public function resolveUser(Score $score) {
+			return $this->db()->findUser($score->userId);
 		}
 
 		/**

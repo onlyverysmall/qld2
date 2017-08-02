@@ -5,18 +5,18 @@
 	use GraphQL\Type\Definition\ObjectType;
 	use GraphQL\Type\Definition\ResolveInfo;
 
-	class CharacterType extends ObjectType {
+	class QuizAnswerType extends ObjectType {
+
 		/**
-		 * CharacterType constructor.
+		 * @return QuizAnswerType
 		 */
 		public function __construct() {
 			$config = [
-				'name' => 'Character',
-				'description' => 'Classic heroes and villains',
+				'name' => 'QuizAnswer',
 				'fields' => function () {
 					return [
-						'id' => Types::id(),
-						'name' => Types::string(),
+						'answer' => Types::string(),
+						'isCorrect' => Types::boolean(),
 					];
 				},
 				'resolveField' => function ($value, $args, $context, ResolveInfo $info) {

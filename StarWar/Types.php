@@ -4,9 +4,14 @@
 	use StarWar\Type\CharacterType;
 	use StarWar\Type\MovieType;
 	use StarWar\Type\QuoteType;
-	use StarWar\Type\QuoteInputType;
+	use StarWar\Type\ScoreInputType;
 	use StarWar\Type\QueryType;
+	use StarWar\Type\QuizQuestionType;
+	use StarWar\Type\QuizAnswerType;
+	use StarWar\Type\ScoreType;
+	use StarWar\Type\UserType;
 	use StarWar\Type\MutationType;
+	use StarWar\Type\MovieEnum;
 	use GraphQL\Type\Definition\ListOfType;
 	use GraphQL\Type\Definition\NonNull;
 	use GraphQL\Type\Definition\Type;
@@ -28,10 +33,18 @@
 		private static $movie;
 		/** @var QuoteType */
 		private static $quote;
-		/** @var QuoteInputType */
-		private static $quoteInput;
+		/** @var ScoreInputType */
+		private static $scoreInput;
 		/** @var QueryType */
 		private static $query;
+		/** @var QuizQuestionType */
+		private static $quizQuestion;
+		/** @var QuizAnswerType */
+		private static $quizAnswer;
+		/** @var ScoreType */
+		private static $score;
+		/** @var UserType */
+		private static $user;
 		/** @var MutationType */
 		private static $mutation;
 
@@ -57,17 +70,45 @@
 		}
 
 		/**
-		 * @return QuoteInputType
-		 */
-		public static function quoteInput() {
-			return self::$quoteInput ?: (self::$quoteInput = new QuoteInputType());
-		}
-
-		/**
 		 * @return QueryType
 		 */
 		public static function query() {
 			return self::$query ?: (self::$query = new QueryType());
+		}
+
+		/**
+		 * @return QuizQuestionType
+		 */
+		public static function quizQuestion() {
+			return self::$quizQuestion ?: (self::$quizQuestion = new QuizQuestionType());
+		}
+
+		/**
+		 * @return QuizAnswerType
+		 */
+		public static function quizAnswer() {
+			return self::$quizAnswer ?: (self::$quizAnswer = new QuizAnswerType());
+		}
+
+		/**
+		 * @return ScoreInputType
+		 */
+		public static function scoreInput() {
+			return self::$scoreInput ?: (self::$scoreInput = new ScoreInputType());
+		}
+
+		/**
+		 * @return ScoreType
+		 */
+		public static function score() {
+			return self::$score ?: (self::$score = new ScoreType());
+		}
+
+		/**
+		 * @return UserType
+		 */
+		public static function user() {
+			return self::$user ?: (self::$user = new UserType());
 		}
 
 		/**

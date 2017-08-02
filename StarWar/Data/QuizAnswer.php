@@ -3,15 +3,15 @@
 
 	use GraphQL\Utils;
 
-	class Movie {
-		/** @var integer */
-		public $id;
-
+	class QuizAnswer {
 		/** @var string */
-		public $title;
+		public $answer;
+
+		/** @var boolean */
+		public $isCorrect;
 
 		/**
-		 * Movie constructor.
+		 * QuizAnswer constructor.
 		 * @param array $data
 		 */
 		public function __construct(array $data) {
